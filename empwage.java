@@ -1,36 +1,26 @@
 public class empwage {
+	public static final int isfulltime=1,isparttime=2,absent=0;
 	public void dailywage(){
-		int ispresent=1;
-		int isfulltime=1,isparttime=0,empwage,emphour,dailywage=20;
+		int empwage,emphour=0,dailywage=20;
 
-   	int attendence = (int)Math.floor(Math.random() * 10)%2;
+   	int attendence = (int)Math.floor(Math.random() * 10)%3;
 
-		if (attendence == ispresent)
-		{
-			System.out.println("Employee is present");
-			int empcheck = (int)Math.floor(Math.random() * 10)%2;
-			if(empcheck == isfulltime)
-			{
-				System.out.println("Employee is full time");
+		switch (attendence){
+			case isfulltime:
+				System.out.println("Employee is Full Time");
 				emphour=8;
-				empwage=dailywage*emphour;
-				System.out.println("Daily employee wage is: "+empwage);
-			}
-			else if(empcheck == isparttime)
-			{
-				System.out.println("Employee is part time");
+				break;
+			case isparttime:
+				System.out.println("Emplpyee is Part Time");
 				emphour=4;
-				empwage=dailywage*emphour;
-				System.out.println("Daily employee wage is: "+empwage);
-			}
+				break;
+			case absent:
+				System.out.println("Employee is Absent");
+				emphour=0;
+				break;
 		}
-		else
-		{
-     		System.out.println("Employee is absent");
-			emphour=0;
-			empwage=dailywage*emphour;
-			System.out.println("Daily employee wage is: "+empwage);
-		}
+		empwage=emphour*dailywage;
+		System.out.println("Daily wage of an Employee is: "+empwage);
 	}
 	public static void main(String[] args) {
 		System.out.println("Welcome to employee wage problem using OOPS concept");
