@@ -1,10 +1,12 @@
 public class empwage {
 	public static final int isfulltime=1,isparttime=2,absent=0;
-	public void dailywage(){
-		int maximum_days=20,totalwage=0;
-		for(int day = 1 ;day <= maximum_days;day++)
+	public void wagelimit(){
+		int maximum_days=20,maximum_hrs=100,dailywage=20;
+		int total_hrs=0,total_days=0,totalwage=0;
+		while(total_hrs<=maximum_hrs && total_days<=maximum_days)
 		{
-			int empwage,emphour=0,dailywage=20;
+			total_days++;
+			int empwage,emphour=0;
 
 			int attendence = (int)Math.floor(Math.random() * 10)%3;
 
@@ -22,15 +24,17 @@ public class empwage {
 					emphour=0;
 					break;
 			}
+			total_hrs+=emphour;
 			empwage=emphour*dailywage;
 			System.out.println(empwage);
-			totalwage+=empwage;
+			//totalwage+=empwage;
 		}
+		totalwage=total_hrs*dailywage;
 		System.out.println("Daily wage of an Employee is: "+totalwage);
 	}
 	public static void main(String[] args) {
 		System.out.println("Welcome to employee wage problem using OOPS concept");
 		empwage ew=new empwage();
-		ew.dailywage();
+		ew.wagelimit();
 	}
 }
