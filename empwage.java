@@ -1,46 +1,57 @@
-public class empwage {
+public class Empwage {
 	public static final int isfulltime=1,isparttime=2,absent=0;
-	public static int day=1;
-	public static int maximum_days=20,maximum_hrs=100,dailywage=20;
-	public static int total_hrs=0,total_days=0,totalwage=0;
 
-	public static int wagelimit(){
-		int emphour=0;
-		int attendence = (int)Math.floor(Math.random() * 10)%3;
-		switch (attendence){
-			case isfulltime:
-				System.out.println("Employee is Full Time");
-				emphour=8;
-				break;
-			case isparttime:
-				System.out.println("Emplpyee is Part Time");
-				emphour=4;
-				break;
-			case absent:
-				System.out.println("Employee is Absent");
-				emphour=0;
-				break;
-		}
-		return emphour;
-	}
-	public void salary()
+	private final String company;
+	private final int maximum_hrs;
+	private final int maximum_days;
+	private final int dailywage;
+	private int totalwage;
+
+	public Empwage(String company,int maximum_hrs,int maximum_days,int dailywage)
 	{
-		empwage emp=new empwage();
-		while(total_hrs<=maximum_hrs && total_days<=maximum_days)
+		this.company = company;
+		this.maximum_hrs = maximum_hrs;
+		this.maximum_days = maximum_days;
+		this.dailywage=dailywage;
+	}
+
+	public void computeEmpwage()
+	{
+		int emphour=0,total_hrs=0,total_days=0,empwage=0;
+		while(total_hrs<=maximum_hrs && total_days<maximum_days)
       {
-			int empwage;
-			total_hrs++;
-			int emphr=wagelimit();
-         empwage=emphr*dailywage;
-         System.out.println(empwage);
-			total_hrs+=emphr;
+			total_days++;
+			int attendence = (int)Math.floor(Math.random() * 10)%3;
+			switch (attendence){
+				case isfulltime:
+					System.out.println("Employee is Full Time");
+					emphour=8;
+					break;
+				case isparttime:
+					System.out.println("Emplpyee is Part Time");
+					emphour=4;
+					break;
+				case absent:
+					System.out.println("Employee is Absent");
+					emphour=0;
+					break;
+			}
+			empwage=emphour*dailywage;
+			total_hrs+=emphour;
+			System.out.println("Day: "+total_days+" Employee hours: "+emphour);
+			System.out.println(empwage);
 		}
 		totalwage=total_hrs*dailywage;
-		System.out.println("Total wage of an Employee is: "+totalwage);
+		System.out.println("Total salary of an Employee working at "+company+" is: "+totalwage);
 	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to employee wage problem using OOPS concept");
-		empwage ew=new empwage();
-		ew.salary();
+		Empwage dMart =new Empwage("Dmart",100,20,20);
+		Empwage reliance =new Empwage("Reliance",200,40,60);
+
+		dMart.computeEmpwage();
+		reliance.computeEmpwage();
+
 	}
 }
