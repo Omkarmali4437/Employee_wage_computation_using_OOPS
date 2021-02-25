@@ -1,7 +1,7 @@
 import java.util.*;
 
 interface ImplementComputeEmpWage {
-	public void addCompanyEmpwage(String companyName, int empWagePerHr, int daysInMonth, int maxHrs);
+	public void addCompanyEmpwage(String company, int empWagePerHr, int daysInMonth, int maxHrs);
 	public void computeEmpwage();
 
 }
@@ -37,16 +37,19 @@ public class Empwage implements ImplementComputeEmpWage
 	public static final int isfulltime=1,isparttime=2,absent=0;
 
 	private ArrayList<CompanyEmpwage> companyEmpwageList;
+	private Map<String,CompanyEmpwage> companyToEmpWageMap;
 
 	public Empwage()
 	{
 		companyEmpwageList =new ArrayList<>();
+		companyToEmpWageMap = new HashMap<>();
 	}
 
 	public void addCompanyEmpwage(String company,int maximum_hrs,int maximum_days,int dailywage)
 	{
 		CompanyEmpwage companyEmpwage=new CompanyEmpwage(company,maximum_hrs,maximum_days,dailywage);
 		companyEmpwageList.add(companyEmpwage);
+		companyToEmpWageMap.put(company, companyEmpwage);
 	}
 	public void computeEmpwage()
 	{
