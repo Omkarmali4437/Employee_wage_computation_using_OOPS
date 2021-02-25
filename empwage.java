@@ -89,6 +89,11 @@ public class Empwage implements ImplementComputeEmpWage
 
 	}
 
+	public int getTotalWage(String company) {
+		return companyToEmpWageMap.get(company).totalwage;
+	}
+
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to employee wage problem using OOPS concept");
 		Empwage empwage =new Empwage();
@@ -97,5 +102,7 @@ public class Empwage implements ImplementComputeEmpWage
 
 		empwage.computeEmpwage();
 
+		System.out.println("Total Wage for Dmart : "+empwage.getTotalWage("Dmart"));
+		System.out.println("Total Wage for Reliance : "+empwage.getTotalWage("Reliance"));
 	}
 }
