@@ -1,3 +1,5 @@
+import java.util.*;
+
 interface ImplementComputeEmpWage {
 	public void addCompanyEmpwage(String companyName, int empWagePerHr, int daysInMonth, int maxHrs);
 	public void computeEmpwage();
@@ -33,25 +35,26 @@ class CompanyEmpwage {
 public class Empwage implements ImplementComputeEmpWage
 {
 	public static final int isfulltime=1,isparttime=2,absent=0;
-	private int numofcompany=0;
-	private CompanyEmpwage[] companyEmpwageArray;
+
+	private ArrayList<CompanyEmpwage> companyEmpwageList;
 
 	public Empwage()
 	{
-		companyEmpwageArray =new CompanyEmpwage[5];
+		companyEmpwageList =new ArrayList<>();
 	}
 
 	public void addCompanyEmpwage(String company,int maximum_hrs,int maximum_days,int dailywage)
 	{
-		companyEmpwageArray[numofcompany]=new CompanyEmpwage(company,maximum_hrs,maximum_days,dailywage);
-		numofcompany++;
+		CompanyEmpwage companyEmpwage=new CompanyEmpwage(company,maximum_hrs,maximum_days,dailywage);
+		companyEmpwageList.add(companyEmpwage);
 	}
 	public void computeEmpwage()
 	{
-		for(int i = 0; i<numofcompany; i++)
+		for(int i = 0; i<companyEmpwageList.size(); i++)
 		{
-			companyEmpwageArray[i].setTotalEmpwage(this.computeEmpwage(companyEmpwageArray[i]));
-			System.out.println(companyEmpwageArray[i]);
+			CompanyEmpwage companyEmpwage = companyEmpwageList.get(i);
+			companyEmpwage.setTotalEmpwage(this.computeEmpwage(companyEmpwage));
+			System.out.println(companyEmpwage);
 		}
 	}
 	public int computeEmpwage(CompanyEmpwage companyEmpwage)
