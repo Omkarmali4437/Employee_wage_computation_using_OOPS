@@ -1,3 +1,9 @@
+interface ImplementComputeEmpWage {
+	public void addCompanyEmpwage(String companyName, int empWagePerHr, int daysInMonth, int maxHrs);
+	public void computeEmpwage();
+
+}
+
 class CompanyEmpwage {
 
 	public final String company;
@@ -23,7 +29,8 @@ class CompanyEmpwage {
 	}
 }
 
-public class Empwage
+
+public class Empwage implements ImplementComputeEmpWage
 {
 	public static final int isfulltime=1,isparttime=2,absent=0;
 	private int numofcompany=0;
@@ -47,7 +54,7 @@ public class Empwage
 			System.out.println(companyEmpwageArray[i]);
 		}
 	}
-	private int computeEmpwage(CompanyEmpwage companyEmpwage)
+	public int computeEmpwage(CompanyEmpwage companyEmpwage)
 	{
 		int emphour=0,total_hrs=0,total_days=0,empwage=0;
 		while(total_hrs<=companyEmpwage.maximum_hrs && total_days<companyEmpwage.maximum_days)
